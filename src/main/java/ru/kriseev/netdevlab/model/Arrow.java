@@ -3,7 +3,7 @@ package ru.kriseev.netdevlab.model;
 public class Arrow {
     private double y;
     private double x;
-    private double speed;
+    private final double speed;
     public double getX() {
         return x;
     }

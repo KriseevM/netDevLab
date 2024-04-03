@@ -19,13 +19,14 @@ public class NetDevLabApplication extends Application {
         stage.setTitle("Игра");
         stage.setMinHeight(400);
         stage.setMinWidth(600);
-        //stage.setResizable(false);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
 
     @Override
     public void stop() {
+
         for(Runnable r : stopHandlers) {
             r.run();
         }

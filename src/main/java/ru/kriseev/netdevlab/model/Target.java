@@ -1,14 +1,14 @@
 package ru.kriseev.netdevlab.model;
 
 public class Target {
-    private double radius;
-    private double x;
+    private final double radius;
+    private final double x;
     private double y;
-    private double maxY;
-    private double minY;
-    private double speed;
+    private final double maxY;
+    private final double minY;
+    private final double speed;
     private boolean movingUp = true;
-    private int scoreIncrement;
+    private final int scoreIncrement;
 
     public int getScoreIncrement() {
         return scoreIncrement;
