@@ -59,7 +59,7 @@ public class Player {
         if(arrow != null) {
             return;
         }
-        arrow = new Arrow(x, y, 6);
+        arrow = new Arrow(x, y, 9);
         incrementShots();
     }
 
