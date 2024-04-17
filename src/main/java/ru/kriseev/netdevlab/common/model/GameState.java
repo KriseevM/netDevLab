@@ -1,4 +1,6 @@
-package ru.kriseev.netdevlab.model;
+package ru.kriseev.netdevlab.common.model;
+
+import com.google.gson.annotations.Expose;
 
 public class GameState {
     public GameState(double fieldWidth, double fieldHeight, Target[] targets, int playerCount)
@@ -29,15 +31,22 @@ public class GameState {
         this.winner = winner;
         this.paused = paused;
     }
+    @Expose
     private final Target[] targets;
+    @Expose
     private final Player[] players;
+    @Expose
     private final double fieldWidth;
+    @Expose
     private final double fieldHeight;
+    @Expose
 
     private String winner;
+    @Expose
 
     private Boolean isFinished;
 
+    @Expose
     private Boolean paused;
 
     public void setIsFinished(Boolean value) {
@@ -46,8 +55,9 @@ public class GameState {
     public Boolean getIsFinished() {
         return isFinished;
     }
-    public void setWinner(String winner) {
-        this.winner = winner;
+    public void setWinner(Player winner) {
+        this.winner = winner.getNickname();
+        winner.incrementRank();
     }
     public String getWinner() {
         return winner;

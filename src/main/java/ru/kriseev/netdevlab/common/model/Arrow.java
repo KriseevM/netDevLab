@@ -1,7 +1,11 @@
-package ru.kriseev.netdevlab.model;
+package ru.kriseev.netdevlab.common.model;
+
+import com.google.gson.annotations.Expose;
 
 public class Arrow {
+    @Expose
     private double y;
+    @Expose
     private double x;
     private final double speed;
     public double getX() {

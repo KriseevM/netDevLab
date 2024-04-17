@@ -1,7 +1,7 @@
-package ru.kriseev.netdevlab;
+package ru.kriseev.netdevlab.client;
 
 import javafx.scene.control.ListCell;
-import ru.kriseev.netdevlab.model.Player;
+import ru.kriseev.netdevlab.common.model.Player;
 
 public class PlayerStatsListCell extends ListCell<Player> {
     PlayerStatsView view;

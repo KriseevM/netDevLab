@@ -1,15 +1,19 @@
-package ru.kriseev.netdevlab;
+package ru.kriseev.netdevlab.client;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import ru.kriseev.netdevlab.model.GameState;
-import ru.kriseev.netdevlab.model.Player;
+import javafx.stage.Stage;
+import ru.kriseev.netdevlab.common.model.GameState;
+import ru.kriseev.netdevlab.common.model.Player;
 
+import java.io.IOException;
 import java.util.List;
 
 public class NetDevMainController {
@@ -33,6 +37,10 @@ public class NetDevMainController {
     private BorderPane mainLayout;
     @FXML
     private Pane fieldPane;
+
+    @FXML
+    private Button leaderboardButton;
+
     private GameRenderer renderer;
     private Thread gameRunner;
 
@@ -193,6 +201,22 @@ public class NetDevMainController {
     public void shoot() {
         synchronized (client) {
             client.shoot();
+        }
+    }
+
+    public void showLeaderboard() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(NetDevMainController.class.getResource("leaderboard-dialog.fxml"));
+            fxmlLoader.setController(new LeaderboardDialog(client));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            Stage stage = new Stage();
+            stage.setTitle("Leaderboard");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

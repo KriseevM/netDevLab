@@ -1,8 +1,13 @@
-package ru.kriseev.netdevlab.model;
+package ru.kriseev.netdevlab.common.model;
+
+import com.google.gson.annotations.Expose;
 
 public class Target {
+    @Expose
     private final double radius;
+    @Expose
     private final double x;
+    @Expose
     private double y;
     private final double maxY;
     private final double minY;

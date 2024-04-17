@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="mainLayout" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kriseev.netdevlab.NetDevMainController">
+<BorderPane fx:id="mainLayout" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kriseev.netdevlab.client.NetDevMainController">
    <center>
       <Pane fx:id="fieldPane" prefHeight="480" prefWidth="640" BorderPane.alignment="CENTER" />
    </center>
@@ -45,6 +45,11 @@
                </HBox.margin>
             </TextField>
             <Button fx:id="joinButton" mnemonicParsing="false" onAction="#joinClick" text="Присоединиться">
+               <HBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="leaderboardButton" mnemonicParsing="false" onAction="#showLeaderboard" text="Leaderboard">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin>

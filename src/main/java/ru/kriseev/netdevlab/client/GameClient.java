@@ -1,11 +1,16 @@
-package ru.kriseev.netdevlab;
+package ru.kriseev.netdevlab.client;
 
 import com.google.gson.Gson;
-import ru.kriseev.netdevlab.model.GameState;
-import ru.kriseev.netdevlab.model.Room;
+import com.google.gson.reflect.TypeToken;
+import ru.kriseev.netdevlab.common.model.GameState;
+import ru.kriseev.netdevlab.common.model.LeaderboardEntry;
+import ru.kriseev.netdevlab.common.model.Room;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameClient {
     Socket socket;
@@ -155,6 +160,16 @@ public class GameClient {
         String message;
         try {
             socketReader.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public List<LeaderboardEntry> getLeaderboard() {
+        socketWriter.println("leaderboard");
+        try {
+            String message = socketReader.readLine();
+            Type leaderboardType = new TypeToken<ArrayList<LeaderboardEntry>>() {}.getType();
+            return new Gson().fromJson(message, leaderboardType);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

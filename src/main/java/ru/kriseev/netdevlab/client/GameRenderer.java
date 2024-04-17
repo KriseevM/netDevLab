@@ -1,4 +1,4 @@
-package ru.kriseev.netdevlab;
+package ru.kriseev.netdevlab.client;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -7,10 +7,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
-import ru.kriseev.netdevlab.model.Arrow;
-import ru.kriseev.netdevlab.model.GameState;
-import ru.kriseev.netdevlab.model.Player;
-import ru.kriseev.netdevlab.model.Target;
+import ru.kriseev.netdevlab.common.model.Arrow;
+import ru.kriseev.netdevlab.common.model.GameState;
+import ru.kriseev.netdevlab.common.model.Player;
+import ru.kriseev.netdevlab.common.model.Target;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,6 @@
-package ru.kriseev.netdevlab.model;
+package ru.kriseev.netdevlab.common.model;
+
+import com.google.gson.annotations.Expose;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,7 @@ public class Room {
     public Room() {
         playerList = new ArrayList<>();
     }
+    @Expose
     private final List<Player> playerList;
 
     public void addPlayer(Player player) {

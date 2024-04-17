@@ -1,8 +1,11 @@
 package ru.kriseev.netdevlab.server;
 
 import com.google.gson.Gson;
-import ru.kriseev.netdevlab.model.Player;
-import ru.kriseev.netdevlab.model.Room;
+import com.google.gson.GsonBuilder;
+import ru.kriseev.netdevlab.common.model.Player;
+import ru.kriseev.netdevlab.common.model.Room;
+import ru.kriseev.netdevlab.server.model.PlayerRepository;
+import ru.kriseev.netdevlab.server.util.HibernateSessionFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,7 +29,8 @@ class ServerSocketIOHandler extends Thread {
         BufferedReader br;
         PrintWriter writer;
         Player associatedPlayer = null;
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+        PlayerRepository playerRepository = new PlayerRepository();
         System.out.println("Accepted new connection");
         try {
             writer = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -37,6 +41,9 @@ class ServerSocketIOHandler extends Thread {
                 message = br.readLine();
                 MSGSW:
                 switch (message) {
+                    case "leaderboard":
+                        writer.println(gson.toJson(playerRepository.getTopPlayers()));
+                        break;
                     case "gameStarted":
                         synchronized (Game.gameLock) {
                             writer.println(!(Game.currentGame == null || Game.currentGame.getState().getIsFinished()));
@@ -66,7 +73,7 @@ class ServerSocketIOHandler extends Thread {
                                 }
                             }
                             System.out.println(nickname + " logged in");
-                            associatedPlayer = new Player(75.0, 105.0, nickname);
+                            associatedPlayer = playerRepository.getPlayer(nickname);
                             double y = 105.0;
                             room.addPlayer(associatedPlayer);
                             for (Player p : room.getPlayers()) {
@@ -161,6 +168,7 @@ public class Server {
             System.out.println("Can't start second server in same instance");
             return;
         }
+        HibernateSessionFactory.getSessionFactory(); // Init for future use
         Room room = new Room();
         Thread gameloopThread = new Thread(() -> {
             System.out.println("Started gameloop thread");

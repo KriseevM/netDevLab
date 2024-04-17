@@ -1,10 +1,10 @@
-package ru.kriseev.netdevlab;
+package ru.kriseev.netdevlab.client;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import ru.kriseev.netdevlab.model.Player;
+import ru.kriseev.netdevlab.common.model.Player;
 
 import java.io.IOException;
 

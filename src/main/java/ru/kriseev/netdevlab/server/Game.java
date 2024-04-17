@@ -1,8 +1,8 @@
 package ru.kriseev.netdevlab.server;
 
-import ru.kriseev.netdevlab.model.GameState;
-import ru.kriseev.netdevlab.model.Player;
-import ru.kriseev.netdevlab.model.Target;
+import ru.kriseev.netdevlab.common.model.GameState;
+import ru.kriseev.netdevlab.common.model.Player;
+import ru.kriseev.netdevlab.common.model.Target;
 
 public class Game {
     public static Game currentGame;
@@ -39,7 +39,7 @@ public class Game {
                     player.setArrow(null);
                     if(player.getScore() >= 6) {
                         this.getState().setIsFinished(true);
-                        this.getState().setWinner(player.getNickname());
+                        this.getState().setWinner(player);
                     }
                 }
             }
